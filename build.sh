@@ -14,6 +14,7 @@ CONTAINER_OUTPUT_DIR=/output_dir
 # The docker image name. e.g: "debian", "ubuntu", "ubuntu:16.04"
 # This build script requires an image that has /bin/bash.
 IMAGE=${IMAGE-debian}
+IMAGE_ARR=(${IMAGE//:/ })
 
 CFLAGS=${CFLAGS-"-Wall"}
 
@@ -21,9 +22,9 @@ if [ "${STATIC_LINK:-0}" -eq 1 ]; then
 	CFLAGS+=" -static"
 fi
 
-if [[ " centos fedora " =~ " ${IMAGE} " ]]; then
+if [[ " centos fedora " =~ " ${IMAGE_ARR[0]} " ]]; then
 	DEFAULT_PKG_TOOL=yum
-elif [[ " opensuse " =~ " ${IMAGE} " ]]; then
+elif [[ " opensuse " =~ " ${IMAGE_ARR[0]} " ]]; then
 	DEFAULT_PKG_TOOL=zypper
 else
 	DEFAULT_PKG_TOOL=apt
