@@ -69,7 +69,7 @@ void print_help_exit(char* argv[]) {
 	printf("version %s\n", VERSION);
 #endif
 	printf("\nUsage: %s [options] [--] [command]\n\n", argv[0]);
-	printf(OPTIONS); 
+	printf(OPTIONS);
 	exit(1);
 }
 
@@ -165,7 +165,7 @@ bool spawn_subproc() {
 
 	// child
 	if (opt_create_subproc_group) {
-		if (setpgrp()) {	
+		if (setpgrp()) {
 			LOG_PERROR("Error creating process group: setpgrp failed (pid=%d)", (int)getpid());
 			exit(1);
 		}
@@ -239,7 +239,7 @@ bool step_check_exit_signal_received(bool first_try) {
 }
 
 bool step_broadcast_sigterm(bool first_try) {
-	if (opt_wait_for_children && opt_broadcast_sigterm_before_wait) { 
+	if (opt_wait_for_children && opt_broadcast_sigterm_before_wait) {
 		LOG_INFO("Broadcasting SIGTERM before waiting for children");
 		kill(-1, SIGTERM);
 	}
@@ -377,4 +377,3 @@ int main(int argc, char* argv[]) {
 	LOG_INFO("Finished.");
 	return exitcode;
 }
-

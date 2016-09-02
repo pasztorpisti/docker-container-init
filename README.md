@@ -37,9 +37,14 @@ in examples below.
 
 In order to use docker-container-init, first you have to compile it.
 The `build.sh` script will do that for you by performing compilation
-inside a docker container using the distro of your choice and placing
-the binary outside of the container. It can be parametrized using
-environment variables. Examples:
+inside a short-lived docker container using the distro of your choice.
+The compiled binary is stored outside of the container that is used
+for compilation - the default output dir is the working directory
+in which you execute `build.sh`. After compilation the short-lived
+"build-container" is deleted.
+The `build.sh` script can be parametrized using environment variables.
+
+Examples:
 
 Builds a dynamically linked `docker-container-init` for the `debian:latest` image:
 ```sh
